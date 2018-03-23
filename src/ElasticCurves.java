@@ -26,8 +26,8 @@ public class ElasticCurves extends PApplet {
 
 	static double pi = 3.14159265359;
 
-	static int w = 3840; // window resolution
-	static int h = 2160;
+	static int w = 800; // window resolution
+	static int h = 800;
 	static int skip = 1;
 
 	static float mx;
@@ -404,21 +404,23 @@ public class ElasticCurves extends PApplet {
 		// x_points = new float[res + 1][2];
 		// y_points = new float[res + 1][2];
 		theta_points = new float[res + 1][2];
+		float[][] sine_points = new float[res + 1][2];
 
 		for (int n = 0; n < res + 1; ++n) {
 
 			turtle_points[n] = new float[] { p[0], p[1] };
+			// sine_points[n] = new float[] {
 			// x_points[n] = new float[] { n * unit / res, p[0] };
 			// y_points[n] = new float[] { n * unit / res, p[1] };
 			// theta_points[n] = new float[] { n * unit / res, (float) (theta / k) * unit /
 			// 4 };
 
-			theta = k * Math.asin(Math.sin(n * freq));
+			theta = k * Math.sin(n * freq);
 
 			last_x = p[0];
 
-			p[0] += (float) Math.asin(Math.sin(theta)) * unit / res;
-			p[1] += (float) Math.acos(Math.cos(theta)) * unit / res;
+			p[0] += (float) Math.sin(theta) * unit / res;
+			p[1] += (float) Math.cos(theta) * unit / res;
 
 			if (p[0] > max_x) {
 				max_x = p[0];
